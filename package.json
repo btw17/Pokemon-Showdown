@@ -1,5 +1,5 @@
 {
-  "name": "pokemon-showdown",
+  "name": "pokemon-showdown-pcc",
   "preferGlobal": true,
   "description": "The server for the Pokémon Showdown battle simulator",
   "version": "0.11.2",
@@ -19,7 +19,7 @@
     "node": ">=7.7.0"
   },
   "scripts": {
-    "start": "node pokemon-showdown start",
+    "start": "node pokemon-showdown-pcc start",
     "build": "node build",
     "tsc": "tsc",
     "lint": "eslint --cache . && tslint --project .",

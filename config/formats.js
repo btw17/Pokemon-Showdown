@@ -12,7 +12,7 @@ let Formats = [
 		section: "US/UM Singles",
 	},
 	{
-		name: "[Gen 7] Random Battle",
+		name: "[Gen 7] PCC Battle",
 		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3591157/">Sets and Suggestions</a>`,

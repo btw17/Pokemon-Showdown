@@ -85,6 +85,7 @@ if (!process.argv[2] || /^[0-9]+$/.test(process.argv[2])) {
 		break;
 	case 'start':
 		{
+			console.log("Starting PCC Pokemon Build!");
 			process.argv[2] = process.argv[3];
 			if (!built) build();
 			require('module')._load('./server', module, true);
