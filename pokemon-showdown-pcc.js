@@ -16,9 +16,9 @@
 // of interfacing with the simulator from non-JS languages. Otherwise we error
 // on the side of caution and run `node build` to ensure we're always running
 // with the latest code.
-var built = false;
+let built = false;
 function build() {
-	require('child_process').execSync('node build', {stdio: 'inherit', cwd: __dirname});
+	require('child_process').execSync('node build', { stdio: 'inherit', cwd: __dirname });
 	built = true;
 }
 
@@ -93,24 +93,24 @@ if (!process.argv[2] || /^[0-9]+$/.test(process.argv[2])) {
 		}
 	case 'generate-team':
 		{
-			var Dex = require('./.sim-dist/dex').Dex;
+			let Dex = require('./.sim-dist/dex').Dex;
 			global.toID = Dex.getId;
-			var seed = process.argv[4] ? process.argv[4].split(',').map(Number) : undefined;
-			console.log(Dex.packTeam(Dex.generateTeam(process.argv[3], {seed})));
+			let seed = process.argv[4] ? process.argv[4].split(',').map(Number) : undefined;
+			console.log(Dex.packTeam(Dex.generateTeam(process.argv[3], { seed })));
 		}
 		break;
 	case 'validate-team':
 		{
-			var Dex = require('./.sim-dist/dex').Dex;
-			var TeamValidator = require('./.sim-dist/team-validator').TeamValidator;
-			var validator = TeamValidator.get(process.argv[3]);
-			var Streams = require('./.lib-dist/streams');
-			var stdin = new Streams.ReadStream(process.stdin);
+			let Dex = require('./.sim-dist/dex').Dex;
+			let TeamValidator = require('./.sim-dist/team-validator').TeamValidator;
+			let validator = TeamValidator.get(process.argv[3]);
+			let Streams = require('./.lib-dist/streams');
+			let stdin = new Streams.ReadStream(process.stdin);
 
 			stdin.readLine().then(function (textTeam) {
 				try {
-					var team = Dex.fastUnpackTeam(textTeam);
-					var result = validator.validateTeam(team);
+					let team = Dex.fastUnpackTeam(textTeam);
+					let result = validator.validateTeam(team);
 					if (result) {
 						console.error(result.join('\n'));
 						process.exit(1);
@@ -125,12 +125,12 @@ if (!process.argv[2] || /^[0-9]+$/.test(process.argv[2])) {
 		break;
 	case 'simulate-battle':
 		{
-			var BattleTextStream = require('./.sim-dist/battle-stream').BattleTextStream;
-			var Streams = require('./.lib-dist/streams');
-			var stdin = new Streams.ReadStream(process.stdin);
-			var stdout = new Streams.WriteStream(process.stdout);
+			let BattleTextStream = require('./.sim-dist/battle-stream').BattleTextStream;
+			let Streams = require('./.lib-dist/streams');
+			let stdin = new Streams.ReadStream(process.stdin);
+			let stdout = new Streams.WriteStream(process.stdout);
 
-			var battleStream = new BattleTextStream({
+			let battleStream = new BattleTextStream({
 				debug: process.argv[3] === '--debug'
 			});
 			battleStream.start();
@@ -140,13 +140,13 @@ if (!process.argv[2] || /^[0-9]+$/.test(process.argv[2])) {
 		break;
 	case 'unpack-team':
 		{
-			var Dex = require('./.sim-dist/dex').Dex;
-			var Streams = require('./.lib-dist/streams');
-			var stdin = new Streams.ReadStream(process.stdin);
+			let Dex = require('./.sim-dist/dex').Dex;
+			let Streams = require('./.lib-dist/streams');
+			let stdin = new Streams.ReadStream(process.stdin);
 
 			stdin.readLine().then(function (packedTeam) {
 				try {
-					var unpackedTeam = Dex.fastUnpackTeam(packedTeam);
+					let unpackedTeam = Dex.fastUnpackTeam(packedTeam);
 					console.log(JSON.stringify(unpackedTeam));
 					process.exit(0);
 				} catch (e) {
@@ -158,13 +158,13 @@ if (!process.argv[2] || /^[0-9]+$/.test(process.argv[2])) {
 		break;
 	case 'pack-team':
 		{
-			var Dex = require('./.sim-dist/dex').Dex;
-			var Streams = require('./.lib-dist/streams');
-			var stdin = new Streams.ReadStream(process.stdin);
+			let Dex = require('./.sim-dist/dex').Dex;
+			let Streams = require('./.lib-dist/streams');
+			let stdin = new Streams.ReadStream(process.stdin);
 
 			stdin.readLine().then(function (unpackedTeam) {
 				try {
-					var packedTeam = Dex.packTeam(JSON.parse(unpackedTeam));
+					let packedTeam = Dex.packTeam(JSON.parse(unpackedTeam));
 					console.log(packedTeam);
 					process.exit(0);
 				} catch (e) {
